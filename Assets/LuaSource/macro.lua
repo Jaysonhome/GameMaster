@@ -1,3 +1,2 @@
---_G.inspect = require("lib/inspect")
-
-require("framework/core/class")
+_G.inspect = require("lib/inspect")
+_G.class = require("framework/core/class")
