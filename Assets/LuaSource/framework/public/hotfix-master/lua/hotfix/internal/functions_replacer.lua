@@ -40,6 +40,7 @@ local function replace_functions_in_upvalues(function_object)
 end  -- replace_functions_in_upvalues()
 
 -- Replace all updated functions in the table.
+---@param table_object newObj(加载的内容)|G|Registry
 local function replace_functions_in_table(table_object)
     local obj = table_object
     assert("table" == type(obj))
@@ -48,7 +49,7 @@ local function replace_functions_in_table(table_object)
     
     replace_functions(debug.getmetatable(obj))
     local new = {}  -- to assign new fields
-    for k, v in pairs(obj) do
+    for k, v in pairs(obj) do  ---eg: G . 遍历替换掉。
         local new_k = updated_func_map[k]
         local new_v = updated_func_map[v]
         if new_k then
@@ -65,6 +66,7 @@ end  -- replace_functions_in_table()
 
 -- Replace all updated functions.
 -- Record all replaced objects in replaced_obj.
+---@param obj newObj(加载的内容)|G|Registry
 function replace_functions(obj)
     if protected[obj] then return end
     local obj_type = type(obj)

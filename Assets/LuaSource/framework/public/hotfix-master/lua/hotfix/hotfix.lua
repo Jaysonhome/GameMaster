@@ -85,7 +85,7 @@ function M.hotfix_module_jay(module_name)
         ok,func = pcall(v,module_name)
         if ok==false then  M.log_error(func) end
         if type(func) == "function" then
-            ---2 调加载之后的函数
+            ---2 调加载之后的函数 .  obj 就是新的了？！
             obj = func(module_name)
             break
         end
